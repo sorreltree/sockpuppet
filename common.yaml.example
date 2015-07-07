@@ -1,0 +1,37 @@
+sockpuppet::classes:
+  - 'timezone'
+sockpuppet::packlist:
+  - 'git'
+  - 'wget'
+  - 'sudo'
+  - 'man'
+  - 'man-pages'
+  - 'denyhosts'
+  - 'ntp'
+  - 'bind-utils'
+sockpuppet::userlist:
+  'someuser':
+    home: /home/someuser
+    uid: 12345
+    gid: 12345
+    comment: 'Samuel Omeuser'
+    groups: ['sillynames']
+    shell: '/bin/bash'
+sockpuppet::grouplist:
+  'someuser':
+    gid: 12345
+sockpuppet::sshkeylist:
+  'someuser@example.com':
+    user: someuser
+    type: ssh-rsa
+    key: SOME/LONG/UGLY/STRING/OF/BASE64/CHARACTERS/THAT/CONTAINES/AN/SSHKEY/123456789/thequickbrownfoxjumpsoverthelazydogloremipsum
+sockpuppet::srvlist:
+  - 'denyhosts'
+sockpuppet::mountlist:
+  '/nfsmount':
+    device: 'someserver:/export/foo'
+    fstype: 'nfs4'
+    options: 'ro'
+    atboot: true
+timezone: 'America/New_York'
+timezone::timezone_hw_utc: 'true'

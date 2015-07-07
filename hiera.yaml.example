@@ -1,0 +1,9 @@
+---
+:yaml:
+  :datadir: /vagrant/hieradata
+:merge_behavior: deeper
+:hierarchy:
+  - local
+  - %{::virtual}
+  - %{::fqdn}
+  - common
