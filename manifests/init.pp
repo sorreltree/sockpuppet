@@ -18,18 +18,28 @@ class sockpuppet (
   $full_mountlist = hiera_hash('sockpuppet::mountlist', $mountlist)
   $full_sshkeylist = hiera_hash('sockpuppet::sshkeylist', $sshkeylist)
 
-  package { $full_packlist: ensure => installed }
+  package { $full_packlist:
+    ensure => installed,
+    tag    => 'sockpuppet',
+  }
 
   service { $full_srvlist:
     ensure => running,
     enable => true,
+    tag    => 'sockpuppet',
   }
 
-  create_resources(group, $full_grouplist, { ensure => present } )
-  create_resources(user, $full_userlist, { managehome => true } )
-  create_resources(mount, $full_mountlist, { ensure => 'mounted' } )
-  create_resources(ssh_authorized_key, $full_sshkeylist, { ensure => present } )
+  create_resources(group, $full_grouplist, { ensure => present, tag => 'sockpuppet', } )
+  create_resources(user, $full_userlist, { managehome => true, tag => 'sockpuppet', } )
+  create_resources(mount, $full_mountlist, { ensure => 'mounted', tag => 'sockpuppet', } )
+  create_resources(ssh_authorized_key, $full_sshkeylist, { ensure => present, tag => 'sockpuppet', } )
 
   
 }
-
+Yumrepo <|  |> ->
+Package <| tag == 'sockpuppet' |> ->
+Group   <| tag == 'sockpuppet' |> ->
+User    <| tag == 'sockpuppet' |> ->
+Ssh_authorized_key <| tag == 'sockpuppet' |> ->
+Service <| tag == 'sockpuppet' |> ->
+Mount   <| tag == 'sockpuppet' |>
