@@ -8,6 +8,7 @@ class sockpuppet (
 )
 {
 
+  class { 'sockpuppet::selinux': }
   hiera_include('sockpuppet::classes')
 
   # Not as pretty as autolookup, but hey...
