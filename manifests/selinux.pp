@@ -9,6 +9,6 @@ class sockpuppet::selinux (
   $full_fcontextlist = hiera_hash('sockpuppet::fcontextlist', $fcontextlist)
 
   create_resources(selinux::boolean, $full_boollist)
-  create_resources(selinux::restorecondlist, $full_restorecondlist)
-  create_resources(selinux::fcontextlist, $full_fcontextlist)
+  create_resources(selinux::restorecond, $full_restorecondlist)
+  create_resources(selinux::fcontext, $full_fcontextlist)
 }
